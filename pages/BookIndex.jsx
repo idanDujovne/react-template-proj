@@ -37,7 +37,6 @@ export function BookIndex() {
     if (!books) return <div>Loading...</div>
     return (
         <section className="book-index">
-            <h1>check out our books!</h1>
             {!selectedBookId &&
                 <React.Fragment>
                     <BookFilter filterBy={filterBy} onSetFilter={onSetFilter} />

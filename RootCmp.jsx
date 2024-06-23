@@ -5,15 +5,15 @@ import { BookIndex } from './pages/BookIndex.jsx'
 const { useState } = React
 
 export function App() {
-    const [page, setPage] = useState('book')
+    const [page, setPage] = useState('home')
     return (
         <section className="app">
             <header className="app-header">
                 <h1>My App</h1>
                 <nav className="app-nav">
-                    <a onClick={() => setPage('home')} href="#">Home</a>
-                    <a onClick={() => setPage('about')} href="#">About</a>
-                    <a onClick={() => setPage('book')} href="#">Books</a>
+                    <a onClick={() => setPage('home')} href="#">Home</a>&nbsp;&nbsp;
+                    <a onClick={() => setPage('about')} href="#">About</a>&nbsp;&nbsp;
+                    <a onClick={() => setPage('book')} href="#">Books</a>&nbsp;&nbsp;
                 </nav>
             </header>
             <main className="container">
