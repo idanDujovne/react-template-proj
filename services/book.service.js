@@ -6,6 +6,7 @@ _createBooks()
 
 export const bookService = {
     query,
+    get,
     getEmptyBook,
     getDefaultFilter,
 }
@@ -18,18 +19,32 @@ function query(filterBy = {}) {
                 books = books.filter(book => regExp.test(book.title))
             }
             if (filterBy.price) {
-                books = books.filter(book => book.price >= filterBy.price)
+                books = books.filter(book => book.listPrice.amount >= filterBy.price)
             }
             return books
         })
 }
 
-function getEmptyBook(title = '', price = '') {
-    return { id: '', title, price}
+function get(bookId) {
+    return storageService.get(BOOK_KEY, bookId)
+}
+
+function getEmptyBook(title = '', amount = '') {
+    return {
+        id: '',
+        title,
+        description: '',
+        thumbnail: '',
+        listPrice: {
+            amount,
+            currencyCode: '',
+            isOnSale: '',
+        }
+    }
 }
 
 function getDefaultFilter() {
-    return { txt: '', price: '' }
+    return { txt: '', amount: '' }
 }
 
 function _createBooks() {
@@ -43,8 +58,14 @@ function _createBooks() {
     }
 }
 
-function _createBook(title, price) {
-    const book = getEmptyBook(title, price)
+function _createBook(title, amount) {
+    const book = getEmptyBook(title, amount)
     book.id = utilService.makeId()
+    book.description = utilService.makeLorem(45)
+    book.listPrice = {
+        amount,
+        currencyCode: 'ILS',
+        isOnSale: false
+    }
     return book
 }
