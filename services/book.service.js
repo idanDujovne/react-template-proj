@@ -7,6 +7,7 @@ _createBooks()
 export const bookService = {
     query,
     get,
+    remove,
     getEmptyBook,
     getDefaultFilter,
 }
@@ -27,6 +28,10 @@ function query(filterBy = {}) {
 
 function get(bookId) {
     return storageService.get(BOOK_KEY, bookId)
+}
+
+function remove(bookId) {
+    return storageService.remove(BOOK_KEY, bookId)
 }
 
 function getEmptyBook(title = '', amount = '') {
